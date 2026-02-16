@@ -10,4 +10,5 @@
 /storage/*
 !/storage/.keep
 /config/*.key
-/public/uploads/projects/*
+/public/uploads/*
+!/public/uploads/.keep
