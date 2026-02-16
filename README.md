@@ -66,6 +66,38 @@ docker compose -f docker-compose.production.yml down
 docker compose -f docker-compose.production.yml up -d --build
 ```
 
+### Database
+
+Run migrations:
+
+```bash
+docker compose -f docker-compose.production.yml run --rm app bin/rails db:migrate
+```
+
+Seed the database:
+
+```bash
+docker compose -f docker-compose.production.yml run --rm app bin/rails db:seed
+```
+
+Reset the database (drop, recreate, migrate, seed):
+
+```bash
+docker compose -f docker-compose.production.yml run --rm app bin/rails db:reset
+```
+
+Open a Rails console:
+
+```bash
+docker compose -f docker-compose.production.yml run --rm app bin/rails console
+```
+
+View logs:
+
+```bash
+docker compose -f docker-compose.production.yml logs app --tail 50
+```
+
 ## SSL
 
 Traefik automatically obtains and renews Let's Encrypt certificates. The only requirement is that the DNS A record for `clairemoniatte.com` points to the server's public IP, with ports 80 and 443 forwarded.
