@@ -1,0 +1,13 @@
+%h1 Pages
+%table
+  %thead
+    %tr
+      %th Title
+      %th Slug
+      %th
+  %tbody
+    - @pages.each do |page|
+      %tr
+        %td= page.title
+        %td= page.slug
+        %td= link_to "Edit", edit_admin_page_path(page)

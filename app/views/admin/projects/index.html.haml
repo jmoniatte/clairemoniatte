@@ -1,0 +1,20 @@
+%h1 Projects
+%p= link_to "New project", new_admin_project_path
+%table
+  %thead
+    %tr
+      %th Title
+      %th Date
+      %th Thumbnail
+      %th
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= project.title
+        %td= project.project_date&.strftime("%B %Y")
+        %td
+          - if project.thumbnail.present?
+            %img{src: "/uploads/projects/#{project.thumbnail}", alt: project.title, style: "max-height: 50px"}
+        %td
+          = link_to "Edit", edit_admin_project_path(project)
+          = button_to "Delete", admin_project_path(project), method: :delete

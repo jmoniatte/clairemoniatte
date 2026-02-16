@@ -1,0 +1,25 @@
+= form_with(model: [:admin, project], html: { multipart: true }) do |f|
+  - if project.errors.any?
+    .errors
+      %ul
+        - project.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = label_tag :project_date, "Date"
+    = select_month(project.project_date&.month, prefix: "project", field_name: "project_date_month", prompt: "Month")
+    = select_year(project.project_date&.year, prefix: "project", field_name: "project_date_year", prompt: "Year", start_year: 2000, end_year: Date.today.year)
+  .field
+    = f.label :thumbnail
+    - if project.thumbnail.present?
+      %div
+        %img{src: "/uploads/projects/#{project.thumbnail}", alt: project.title, style: "max-height: 100px"}
+    = f.file_field :thumbnail
+  .field
+    = f.label :body
+    = f.text_area :body, rows: 20
+  .actions
+    = f.submit "Save"

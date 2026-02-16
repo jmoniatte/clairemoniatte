@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/rails
+      - storage:/rails/storage
+      - uploads:/rails/public/uploads
+    env_file: .env
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./public:/rails/public:ro
+      - uploads:/rails/public/uploads:ro
+    depends_on:
+      - app
+
+volumes:
+  storage:
+  uploads:

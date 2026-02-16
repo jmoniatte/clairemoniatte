@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+    %title Admin — Claire Moniatte
+    %link{rel: "stylesheet", href: "/css/admin.css"}
+    %script{src: "/js/admin.js", defer: true}
+    = csrf_meta_tags
+  %body
+    %header.admin-header
+      %nav
+        %a{href: admin_root_path} Dashboard
+        %a{href: admin_pages_path} Pages
+        %a{href: admin_projects_path} Projects
+        %a{href: admin_logout_path} Logout
+        %a{href: root_path, target: "_blank"} View Site
+    %main
+      - if flash[:notice]
+        %p.notice= flash[:notice]
+      - if flash[:alert]
+        %p.alert= flash[:alert]
+      = yield

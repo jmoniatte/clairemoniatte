@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %meta{charset: "utf-8"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
+    %title Claire Moniatte
+    %link{rel: "stylesheet", href: "/css/style.css"}
+    %link{rel: "stylesheet", href: "/css/lite-yt-embed.css"}
+    %script{src: "/js/lite-yt-embed.js", defer: true}
+    = csrf_meta_tags
+  %body
+    %header
+      %nav
+        %a{href: root_path} Home
+        %a{href: projects_path} Projects
+        %a{href: page_path(slug: "contact")} Contact
+    %main
+      = yield
