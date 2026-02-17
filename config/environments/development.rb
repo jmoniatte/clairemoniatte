@@ -15,6 +15,9 @@ Rails.application.configure do
   # Enable server timing.
   config.server_timing = true
 
+  # Log to STDOUT so logs appear in Docker Compose.
+  config.logger = ActiveSupport::TaggedLogging.logger(STDOUT)
+
   # Enable/disable Action Controller caching. By default Action Controller caching is disabled.
   # Run rails dev:cache to toggle Action Controller caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?

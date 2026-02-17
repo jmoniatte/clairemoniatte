@@ -13,6 +13,7 @@ module Admin
 
     def create
       @project = Project.new(project_params)
+      @project.status = params[:commit] == "publish" ? "published" : "draft"
       handle_thumbnail
       if @project.save
         redirect_to admin_projects_path, notice: "Project created"
@@ -28,6 +29,7 @@ module Admin
     def update
       @project = Project.find(params[:id])
       @project.assign_attributes(project_params)
+      @project.status = params[:commit] == "publish" ? "published" : "draft"
       handle_thumbnail
       if @project.save
         redirect_to admin_projects_path, notice: "Project updated"
@@ -71,7 +73,13 @@ module Admin
 
       filename = "#{SecureRandom.hex(8)}#{ext}"
       FileUtils.mkdir_p(UPLOAD_DIR)
-      File.open(UPLOAD_DIR.join(filename), "wb") { |f| f.write(file.read) }
+      filepath = UPLOAD_DIR.join(filename)
+      File.open(filepath, "wb") { |f| f.write(file.read) }
+
+      image = MiniMagick::Image.open(filepath)
+      image.resize("800x800>")
+      image.write(filepath)
+
       @project.thumbnail = filename
     end
 

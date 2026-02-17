@@ -1,5 +1,5 @@
 services:
-  app:
+  rails:
     build: .
     volumes:
       - ./storage:/rails/storage
@@ -8,14 +8,14 @@ services:
     environment:
       - RAILS_ENV=production
 
-  web:
+  nginx:
     image: nginx:alpine
     volumes:
       - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./public:/rails/public:ro
       - ./public/uploads:/rails/public/uploads:ro
     depends_on:
-      - app
+      - rails
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.clairemoniatte.rule=Host(`clairemoniatte.com`)"

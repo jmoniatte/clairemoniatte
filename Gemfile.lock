@@ -116,6 +116,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.1.0)
+    mini_magick (5.3.1)
+      logger
     mini_mime (1.1.5)
     minitest (6.0.1)
       prism (~> 1.5)
@@ -238,6 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   haml-rails
+  mini_magick
   puma (>= 5.0)
   rails (~> 8.0)
   redcarpet

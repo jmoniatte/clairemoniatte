@@ -3,18 +3,18 @@
 %table
   %thead
     %tr
+      %th
       %th Title
+      %th Status
       %th Date
-      %th Thumbnail
       %th
   %tbody
     - @projects.each do |project|
       %tr
-        %td= project.title
-        %td= project.project_date&.strftime("%B %Y")
         %td
           - if project.thumbnail.present?
             %img{src: "/uploads/projects/#{project.thumbnail}", alt: project.title, style: "max-height: 50px"}
-        %td
-          = link_to "Edit", edit_admin_project_path(project)
-          = button_to "Delete", admin_project_path(project), method: :delete
+        %td= link_to project.title, edit_admin_project_path(project)
+        %td= project.status.capitalize
+        %td= project.project_date&.strftime("%B %Y")
+        %td= button_to "Delete", admin_project_path(project), method: :delete, class: "btn-sm"

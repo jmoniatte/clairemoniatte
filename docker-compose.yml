@@ -1,5 +1,5 @@
 services:
-  app:
+  rails:
     build: .
     ports:
       - "3000:3000"
@@ -11,7 +11,7 @@ services:
     environment:
       - RAILS_ENV=${RAILS_ENV:-development}
 
-  web:
+  nginx:
     image: nginx:alpine
     ports:
       - "80:80"
@@ -20,4 +20,4 @@ services:
       - ./public:/rails/public:ro
       - ./public/uploads:/rails/public/uploads:ro
     depends_on:
-      - app
+      - rails
