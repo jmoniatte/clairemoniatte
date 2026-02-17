@@ -1,8 +1,6 @@
 %h1= @project.title
 - if @project.project_date.present?
   %p.project-date= @project.project_date.strftime("%B %Y")
-- if @project.thumbnail.present?
-  %img{src: "/uploads/projects/#{@project.thumbnail}", alt: @project.title}
 .project-body
   = render_markdown(@project.body)
 %p= link_to "Back to projects", projects_path

@@ -1,7 +1,8 @@
 %h1 Projects
 .projects
   - @projects.each do |project|
-    .project-card
-      - if project.thumbnail.present?
-        %img{src: "/uploads/projects/#{project.thumbnail}", alt: project.title}
-      %h2= link_to project.title, project_path(project.slug)
+    = link_to project_path(project.slug), class: "project-card" do
+      .thumbnail
+        - if project.thumbnail.present?
+          %img{src: "/uploads/projects/#{project.thumbnail}", alt: project.title}
+      %h2.projectTitle= project.title
