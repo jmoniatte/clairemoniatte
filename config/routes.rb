@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   get  "admin/logout" => "admin/sessions#destroy", as: :admin_logout
 
   namespace :admin do
-    root "dashboard#index"
-    resources :pages, only: [:index, :edit, :update]
+    root "pages#index"
+    resources :pages, only: [:edit, :update]
     resources :projects, except: [:show]
   end
 
   match "/404", to: "errors#not_found", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 
   get ":slug" => "pages#show", as: :page
 end

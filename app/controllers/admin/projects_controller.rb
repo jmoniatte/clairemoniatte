@@ -3,10 +3,6 @@ module Admin
     ALLOWED_EXTENSIONS = %w[.jpg .jpeg .png .gif .webp].freeze
     UPLOAD_DIR = Rails.root.join("public/uploads/projects")
 
-    def index
-      @projects = Project.order(project_date: :desc)
-    end
-
     def new
       @project = Project.new
     end
@@ -16,7 +12,7 @@ module Admin
       @project.status = params[:commit] == "publish" ? "published" : "draft"
       handle_thumbnail
       if @project.save
-        redirect_to admin_projects_path, notice: "Project created"
+        redirect_to admin_root_path, notice: "Project created"
       else
         render :new, status: :unprocessable_entity
       end
@@ -32,7 +28,7 @@ module Admin
       @project.status = params[:commit] == "publish" ? "published" : "draft"
       handle_thumbnail
       if @project.save
-        redirect_to admin_projects_path, notice: "Project updated"
+        redirect_to admin_root_path, notice: "Project updated"
       else
         render :edit, status: :unprocessable_entity
       end
@@ -42,7 +38,7 @@ module Admin
       @project = Project.find(params[:id])
       delete_thumbnail(@project.thumbnail)
       @project.destroy
-      redirect_to admin_projects_path, notice: "Project deleted"
+      redirect_to admin_root_path, notice: "Project deleted"
     end
 
     private

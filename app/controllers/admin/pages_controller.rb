@@ -2,6 +2,7 @@ module Admin
   class PagesController < BaseController
     def index
       @pages = Page.order(:title)
+      @projects = Project.order(project_date: :desc)
     end
 
     def edit
@@ -11,7 +12,7 @@ module Admin
     def update
       @page = Page.find(params[:id])
       if @page.update(page_params)
-        redirect_to admin_pages_path, notice: "Page updated"
+        redirect_to admin_root_path, notice: "Page updated"
       else
         render :edit, status: :unprocessable_entity
       end

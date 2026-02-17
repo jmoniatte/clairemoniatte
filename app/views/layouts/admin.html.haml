@@ -10,11 +10,10 @@
   %body
     %header.admin-header
       %nav
-        %a{href: admin_root_path} Dashboard
-        %a{href: admin_pages_path} Pages
-        %a{href: admin_projects_path} Projects
-        %a{href: admin_logout_path} Logout
-        %a{href: root_path, target: "_blank"} View Site
+        %a{href: admin_root_path} Admin
+        .nav-right
+          %a{href: admin_logout_path} Logout
+          %a{href: root_path, target: "_blank"} Site
     %main
       - if flash[:notice]
         %p.notice= flash[:notice]

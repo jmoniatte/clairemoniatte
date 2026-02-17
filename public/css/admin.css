@@ -17,6 +17,12 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.admin-header .nav-right {
+  margin-left: auto;
+  display: flex;
+  gap: 1.5rem;
+}
+
 .admin-header nav a {
   color: #333;
   text-decoration: none;
