@@ -4,6 +4,7 @@
     %meta{charset: "utf-8"}
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
     %title Claire Moniatte
+    %link{rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap"}
     %link{rel: "stylesheet", href: "/css/sakura.css"}
     %link{rel: "stylesheet", href: "/css/style.css"}
     %link{rel: "stylesheet", href: "/css/lite-yt-embed.css"}
@@ -12,8 +13,9 @@
   %body
     %header
       %nav
-        %a{href: root_path} Home
-        %a{href: projects_path} Projects
-        %a{href: page_path(slug: "contact")} Contact
+        %a.site-title{href: root_path} Claire Moniatte
+        .nav-links
+          %a{href: projects_path} Projects
+          %a{href: page_path(slug: "contact")} Contact
     %main
       = yield

@@ -1,3 +1,4 @@
-%h1= @page.title
+- unless @page.slug == "home"
+  %h1= @page.title
 .page-body
   = render_markdown(@page.body)
